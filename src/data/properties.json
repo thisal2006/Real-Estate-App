@@ -1,0 +1,158 @@
+{
+    "properties": [
+        {
+            "id": "prop1",
+            "type": "House",
+            "bedrooms": 3,
+            "price": 750000,
+            "tenure": "Freehold",
+            "description": "Attractive three bedroom semi-detached family home situated within 0.5 miles of Petts Wood station. Features two receptions, fitted kitchen/breakfast room and conservatory.",
+            "location": "Petts Wood Road, Petts Wood, Orpington BR5",
+            "postcode": "BR5",
+            "hasGarden": true,
+            "hasParking": true,
+            "picture": "/images/p1/1.jpg", 
+            "images": [
+                "/images/p1/1.jpg",
+                "/images/p1/2.png",
+                "/images/p1/3.png",
+                "/images/p1/4.jpg",
+                "/images/p1/5.png"
+            ],
+            "floorplan": "/images/p1/floorplan1.png",
+            "dateAdded": "2022-10-12"
+        },
+        {
+            "id": "prop2",
+            "type": "Flat",
+            "bedrooms": 2,
+            "price": 399995,
+            "tenure": "Leasehold",
+            "description": "Presented in excellent decorative order throughout is this two double bedroom, two bathroom, garden flat.",
+            "location": "Crofton Road, Orpington BR6",
+            "postcode": "BR6",
+            "hasGarden": false,
+            "hasParking": true,
+            "picture": "/images/p2/1.jpeg",
+            "images": [
+                "/images/p2/2.jpeg",
+                "/images/p2/2.jpeg",
+                "/images/p2/3.jpeg",
+                "/images/p2/4.jpeg",
+                "/images/p2/5.jpeg"
+            ],
+            "floorplan": "/images/p2/floorplan2.jpg",
+            "dateAdded": "2022-09-14"
+        },
+        {
+            "id": "prop3",
+            "type": "House",
+            "bedrooms": 4,
+            "price": 650000,
+            "tenure": "Freehold",
+            "description": "A stunning four bedroom detached property located in a quiet cul-de-sac.",
+            "location": "Chislehurst Road, Bromley BR1",
+            "postcode": "BR1",
+            "hasGarden": true,
+            "hasParking": true,
+            "picture": "/images/p3/1.png",
+            "images": [
+                "/images/p3/1.png",
+                "/images/p3/2.png",
+                "/images/p3/3.png",
+                "/images/p3/4.png",
+                "/images/p3/5.png"
+            ],
+            "floorplan": "/images/p3/floorplan3.jpg",
+            "dateAdded": "2023-01-20"
+        },
+        {
+            "id": "prop4",
+            "type": "House",
+            "bedrooms": 5,
+            "price": 950000,
+            "tenure": "Freehold",
+            "description": "An imposing five bedroom Victorian family home arranged over three floors.",
+            "location": "Copers Cope Road, Beckenham BR3",
+            "postcode": "BR3",
+            "hasGarden": true,
+            "hasParking": false,
+            "picture": "/images/p4/1.jpeg",
+            "images": [
+                "/images/p4/1.jpeg",
+                "/images/p4/2.jpeg",
+                "/images/p4/3.jpeg",
+                "/images/p4/4.jpeg",
+                "/images/p4/5.jpeg"
+            ],
+            "floorplan": "/images/p4/floorplan4.jpg",
+            "dateAdded": "2023-12-10"
+        },
+        {
+            "id": "prop5",
+            "type": "Flat",
+            "bedrooms": 2,
+            "price": 425000,
+            "tenure": "Leasehold",
+            "description": "Luxury two bedroom apartment in a sought after gated development with private terrace.",
+            "location": "Wigmore Street, London W1",
+            "postcode": "W1",
+            "hasGarden": false,
+            "hasParking": true,
+            "picture": "/images/p5/1.jpeg",
+            "images": [
+                "/images/p5/1.jpeg",
+                "/images/p5/2.jpeg",
+                "/images/p5/3.jpeg",
+                "/images/p5/4.jpeg",
+                "/images/p5/5.jpeg"
+            ],
+            "floorplan": "/images/p5/floorplan5.jpg",
+            "dateAdded": "2024-02-01"
+        },
+        {
+            "id": "prop6",
+            "type": "House",
+            "bedrooms": 3,
+            "price": 550000,
+            "tenure": "Freehold",
+            "description": "Charming three bedroom cottage style property recently renovated.",
+            "location": "Rectory Road, Beckenham BR3",
+            "postcode": "BR3",
+            "hasGarden": true,
+            "hasParking": true,
+            "picture": "/images/p6/1.jpeg",
+            "images": [
+                "/images/p6/1.jpeg",
+                "/images/p6/2.jpeg",
+                "/images/p6/3.jpeg",
+                "/images/p6/4.jpeg",
+                "/images/p6/5.jpeg"
+            ],
+            "floorplan": "/images/p6/floorplan6.jpg",
+            "dateAdded": "2023-08-15"
+        },
+        {
+            "id": "prop7",
+            "type": "Flat",
+            "bedrooms": 1,
+            "price": 299995,
+            "tenure": "Leasehold",
+            "description": "Modern one bedroom flat located close to local amenities and transport links.",
+            "location": "High Street, Bromley BR1",
+            "postcode": "BR1",
+            "hasGarden": false,
+            "hasParking": false,
+            "picture": "/images/p7/1.jpeg",
+            "images": [
+                "/images/p7/1.jpeg",
+                "/images/p7/2.jpeg",
+                "/images/p7/3.jpeg",
+                "/images/p7/4.jpeg",
+                "/images/p7/5.jpeg"
+            ],
+            "floorplan": "/images/p7/floorplan7.jpg",
+            "dateAdded": "2024-05-05"
+        }
+    ]
+}
