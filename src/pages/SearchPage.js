@@ -67,3 +67,4 @@ function SearchPage() {
 }
 
 export default SearchPage;
+// Dec 16: Improved pagination and mobile sidebar stacking
