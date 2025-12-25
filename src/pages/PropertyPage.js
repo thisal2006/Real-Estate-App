@@ -27,9 +27,9 @@ function PropertyPage() {
 
   if (!property) {
     return (
-      <div style={{ padding: "40px", textAlign: "center", color: "#f3f4f6" }}>
+      <div className="property-not-found">
         <h2>Property not found</h2>
-        <Link to="/" style={{ color: "#60a5fa" }}>← Back to Search</Link>
+        <Link to="/">← Back to Search</Link>
       </div>
     );
   }
@@ -64,227 +64,59 @@ function PropertyPage() {
   return (
     <div
       ref={drag}
-      style={{
-        opacity: isDragging ? 0.5 : 1,
-        maxWidth: "1100px",
-        margin: "0 auto",
-        padding: "24px",
-        background: "#0f172a",
-        minHeight: "100vh",
-      }}
+      className="property-page"
+      style={{ opacity: isDragging ? 0.5 : 1 }}
     >
-      <Link to="/" style={{ color: "#60a5fa", textDecoration: "none", fontSize: "1.1rem", display: "block", marginBottom: "20px" }}>
-        ← Back to Search
-      </Link>
+      <header className="property-header">
+        <h1>{property.bedrooms} Bed {property.type} - £{property.price.toLocaleString()}</h1>
+        <p>{property.location}</p>
+        <div className="property-actions">
+          <button onClick={() => favouritesUtil.add(property)}>Add to Favorites</button>
+          <button onClick={shareProperty}>Share</button>
+          <Link to="/">← Back to Search</Link>
+        </div>
+      </header>
 
-      <h1 style={{ fontSize: "2.5rem", color: "#f3f4f6", margin: "0 0 12px 0" }}>
-        {property.bedrooms} Bed {property.type} - {property.location}
-      </h1>
-      <p style={{ fontSize: "2rem", fontWeight: "bold", color: "#60a5fa", margin: "0 0 24px 0" }}>
-        £{property.price.toLocaleString()}
-      </p>
-
-      {/* Main Gallery */}
-      <div style={{ marginBottom: "32px" }}>
-        <img
-          src={images[currentImageIndex]}
-          alt="Property"
-          style={{
-            width: "100%",
-            height: "520px",
-            objectFit: "cover",
-            borderRadius: "12px",
-            boxShadow: "0 8px 20px rgba(0,0,0,0.4)",
-          }}
-        />
-        <div style={{ display: "flex", gap: "12px", marginTop: "16px", overflowX: "auto", paddingBottom: "8px" }}>
-          {images.map((img, i) => (
+      <div className="image-gallery">
+        <img className="large-image" src={images[currentImageIndex]} alt="Property" />
+        <div className="thumbnails">
+          {images.map((img, idx) => (
             <img
-              key={i}
+              key={idx}
               src={img}
-              onClick={() => setCurrentImageIndex(i)}
-              alt={`Thumbnail ${i + 1}`}
-              style={{
-                width: "110px",
-                height: "90px",
-                objectFit: "cover",
-                borderRadius: "8px",
-                cursor: "pointer",
-                border: i === currentImageIndex ? "4px solid #60a5fa" : "2px solid #374151",
-                flexShrink: 0,
-              }}
+              alt={`Thumbnail ${idx + 1}`}
+              onClick={() => setCurrentImageIndex(idx)}
+              className={idx === currentImageIndex ? 'active' : ''}
             />
           ))}
         </div>
       </div>
 
-      {/* Action Buttons */}
-      <div style={{ marginBottom: "32px" }}>
-        <button
-          onClick={() => favouritesUtil.add(property)}
-          style={{
-            padding: "14px 28px",
-            background: "#3b82f6",
-            color: "white",
-            border: "none",
-            borderRadius: "8px",
-            marginRight: "16px",
-            cursor: "pointer",
-            fontSize: "1rem",
-          }}
-        >
-          ♡ Add to Favorites
-        </button>
-        <button
-          onClick={shareProperty}
-          style={{
-            padding: "14px 28px",
-            background: "#10b981",
-            color: "white",
-            border: "none",
-            borderRadius: "8px",
-            cursor: "pointer",
-            fontSize: "1rem",
-          }}
-        >
-          Share Property
-        </button>
+      <p className="property-description">{property.description}</p>
+
+      <div className="property-details">
+        <p><strong>Tenure:</strong> {property.tenure}</p>
+        <p><strong>Has Garden:</strong> {property.hasGarden ? 'Yes' : 'No'}</p>
+        <p><strong>Has Parking:</strong> {property.hasParking ? 'Yes' : 'No'}</p>
+        <p><strong>Date Added:</strong> {property.dateAdded}</p>
       </div>
 
-      {/* Tabs */}
+      <img src={property.floorplan} alt="Floor Plan" className="floor-plan" />
+
+      <iframe src={mapEmbedUrl} title="Property Location" className="map-embed"></iframe>
+
       <Tabs>
-        <TabList
-          style={{
-            borderBottom: "2px solid #374151",
-            marginBottom: "24px",
-            display: "flex",
-            overflowX: "auto",
-            gap: "8px",
-          }}
-        >
-          <Tab style={{ padding: "12px 20px", color: "#9ca3af", cursor: "pointer", whiteSpace: "nowrap" }}>Description</Tab>
-          <Tab style={{ padding: "12px 20px", color: "#9ca3af", cursor: "pointer", whiteSpace: "nowrap" }}>Details</Tab>
-          <Tab style={{ padding: "12px 20px", color: "#9ca3af", cursor: "pointer", whiteSpace: "nowrap" }}>Gallery</Tab>
-          <Tab style={{ padding: "12px 20px", color: "#9ca3af", cursor: "pointer", whiteSpace: "nowrap" }}>Map</Tab>
-          <Tab style={{ padding: "12px 20px", color: "#9ca3af", cursor: "pointer", whiteSpace: "nowrap" }}>Floor Plan</Tab>
-          <Tab style={{ padding: "12px 20px", color: "#9ca3af", cursor: "pointer", whiteSpace: "nowrap" }}>Book Viewing</Tab>
+        <TabList>
+          <Tab>Book Viewing</Tab>
         </TabList>
-
-        {/* Description */}
         <TabPanel>
-          <p style={{ lineHeight: "1.8", color: "#e5e7eb", fontSize: "1.1rem" }}>{property.description}</p>
-        </TabPanel>
-
-        {/* Details */}
-        <TabPanel>
-          <ul style={{ color: "#e5e7eb", lineHeight: "2.2", fontSize: "1.1rem" }}>
-            <li><strong>Type:</strong> {property.type}</li>
-            <li><strong>Bedrooms:</strong> {property.bedrooms}</li>
-            <li><strong>Price:</strong> £{property.price.toLocaleString()}</li>
-            <li><strong>Tenure:</strong> {property.tenure}</li>
-            <li><strong>Garden:</strong> {property.hasGarden ? "Yes" : "No"}</li>
-            <li><strong>Parking:</strong> {property.hasParking ? "Yes" : "No"}</li>
-            <li><strong>Postcode:</strong> {property.postcode}</li>
-            <li><strong>Date Added:</strong> {new Date(property.dateAdded).toLocaleDateString()}</li>
-          </ul>
-        </TabPanel>
-
-        {/* Gallery */}
-        <TabPanel>
-          <div style={{ margin: "24px 0" }}>
-            <img
-              src={images[currentImageIndex]}
-              alt="Property"
-              style={{ width: "100%", height: "520px", objectFit: "cover", borderRadius: "12px" }}
-            />
-            <div style={{ display: "flex", gap: "12px", marginTop: "16px", overflowX: "auto" }}>
-              {images.map((img, i) => (
-                <img
-                  key={i}
-                  src={img}
-                  onClick={() => setCurrentImageIndex(i)}
-                  style={{
-                    width: "110px",
-                    height: "90px",
-                    objectFit: "cover",
-                    borderRadius: "8px",
-                    cursor: "pointer",
-                    border: i === currentImageIndex ? "4px solid #60a5fa" : "2px solid #374151",
-                  }}
-                />
-              ))}
-            </div>
-          </div>
-        </TabPanel>
-
-        {/* Map - FULL INTERACTIVE GOOGLE MAP (exactly like your screenshot) */}
-        <TabPanel>
-          <div style={{ position: "relative", paddingBottom: "56.25%", height: 0, overflow: "hidden", borderRadius: "12px", boxShadow: "0 4px 12px rgba(0,0,0,0.3)" }}>
-            <iframe
-              src={mapEmbedUrl}
-              style={{
-                position: "absolute",
-                top: 0,
-                left: 0,
-                width: "100%",
-                height: "100%",
-                border: 0,
-              }}
-              allowFullScreen=""
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              title="Property Location"
-            ></iframe>
-          </div>
-        </TabPanel>
-
-        {/* Floor Plan */}
-        <TabPanel>
-          {property.floorplan ? (
-            <div style={{ textAlign: "center", padding: "20px 0" }}>
-              <img
-                src={property.floorplan}
-                alt="Floor Plan"
-                style={{
-                  maxWidth: "100%",
-                  height: "auto",
-                  borderRadius: "12px",
-                  boxShadow: "0 10px 30px rgba(0,0,0,0.5)",
-                }}
-              />
-              <p style={{ color: "#9ca3af", marginTop: "16px", fontStyle: "italic" }}>
-                Click and drag to zoom • Scroll to zoom on mobile
-              </p>
-            </div>
-          ) : (
-            <div style={{ textAlign: "center", padding: "60px 0", color: "#9ca3af" }}>
-              <p style={{ fontSize: "1.2rem", fontStyle: "italic" }}>
-                Floor plan not available for this property yet.
-              </p>
-            </div>
-          )}
-        </TabPanel>
-
-        {/* Book Viewing */}
-        <TabPanel>
-          <h3 style={{ color: "#f3f4f6", marginBottom: "20px" }}>Request a Viewing</h3>
-          <form onSubmit={handleBooking} style={{ maxWidth: "500px" }}>
+          <form onSubmit={handleBooking} className="booking-form">
             <input
               type="text"
               placeholder="Your Name"
               value={name}
               onChange={(e) => setName(e.target.value)}
               required
-              style={{
-                width: "100%",
-                padding: "14px",
-                marginBottom: "16px",
-                borderRadius: "8px",
-                background: "#1f2937",
-                color: "#f3f4f6",
-                border: "1px solid #374151",
-                fontSize: "1rem",
-              }}
             />
             <input
               type="email"
@@ -292,56 +124,22 @@ function PropertyPage() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
-              style={{
-                width: "100%",
-                padding: "14px",
-                marginBottom: "16px",
-                borderRadius: "8px",
-                background: "#1f2937",
-                color: "#f3f4f6",
-                border: "1px solid #374151",
-                fontSize: "1rem",
-              }}
             />
             <DatePicker
               selected={bookingDate}
               onChange={(date) => setBookingDate(date)}
               placeholderText="Select Preferred Date"
               required
-              className="w-full p-3 rounded bg-gray-800 text-white border border-gray-700 mb-4"
             />
-            <button
-              type="submit"
-              style={{
-                width: "100%",
-                padding: "16px",
-                background: "#3b82f6",
-                color: "white",
-                border: "none",
-                borderRadius: "8px",
-                fontSize: "1.1rem",
-                cursor: "pointer",
-              }}
-            >
-              Send Viewing Request
-            </button>
+            <button type="submit">Send Viewing Request</button>
           </form>
         </TabPanel>
       </Tabs>
 
-      {/* Similar Properties */}
       {similar.length > 0 && (
-        <div style={{ marginTop: "60px" }}>
-          <h3 style={{ color: "#f3f4f6", fontSize: "2rem", marginBottom: "24px" }}>
-            Similar Properties
-          </h3>
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fill, minmax(340px, 1fr))",
-              gap: "24px",
-            }}
-          >
+        <div className="similar-properties">
+          <h3>Similar Properties</h3>
+          <div className="property-grid">
             {similar.map((p) => (
               <PropertyCard key={p.id} property={p} />
             ))}
@@ -356,3 +154,4 @@ export default PropertyPage;
 
 // DEC 4 UPDATE: Added tabs navigation, booking form with validation, Google Maps embed, and similar properties section
 // Improved image gallery with thumbnail navigation
+// New: Moved styles to classes for mobile responsiveness
