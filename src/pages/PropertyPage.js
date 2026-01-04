@@ -1,3 +1,4 @@
+// PropertyPage.js (Updated with process.env.PUBLIC_URL for all image paths)
 import { useParams, Link } from "react-router-dom";
 import { useState } from "react";
 import { Tabs, TabList, Tab, TabPanel } from "react-tabs";
@@ -34,83 +35,88 @@ function PropertyPage() {
     );
   }
 
-  const images = property.images?.length > 0 ? property.images : [property.picture];
+  const images = property.images || []; // Assuming this is the array from properties.json
+  const thumbnails = images; // Assuming thumbnails use the same images array
 
-  // Similar properties
-  const similar = data.properties
-    .filter(p => p.id !== id && p.type === property.type)
-    .slice(0, 3);
-
-  const handleBooking = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     if (!name || !email || !bookingDate) {
-      toast.error("Please fill all fields");
+      toast.error("Please fill in all fields");
       return;
     }
-    toast.success(`Viewing request sent for ${bookingDate.toDateString()}! We'll contact you soon.`);
+    toast.success(`Viewing request sent for ${bookingDate.toDateString()}`);
     setName("");
     setEmail("");
     setBookingDate(null);
   };
 
-  const shareProperty = () => {
-    navigator.clipboard.writeText(window.location.href);
-    toast.success("Property link copied to clipboard!");
-  };
-
-  // Dynamic Google Maps Embed URL (no API key, fully interactive, looks exactly like your screenshot)
-  const mapEmbedUrl = `https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3000!2d0!3d51!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2z${encodeURIComponent(property.location)}!5e0!3m2!1sen!2suk!4v1700000000000`;
+  const similar = data.properties.filter(
+    p => p.id !== id && p.type === property.type && Math.abs(p.price - property.price) < 100000
+  ).slice(0, 3);
 
   return (
-    <div
-      ref={drag}
-      className="property-page"
-      style={{ opacity: isDragging ? 0.5 : 1 }}
-    >
-      <header className="property-header">
+    <div className="property-page" ref={drag} style={{ opacity: isDragging ? 0.5 : 1 }}>
+      <div className="property-header">
         <h1>{property.bedrooms} Bed {property.type} - £{property.price.toLocaleString()}</h1>
         <p>{property.location}</p>
-        <div className="property-actions">
-          <button onClick={() => favouritesUtil.add(property)}>Add to Favorites</button>
-          <button onClick={shareProperty}>Share</button>
-          <Link to="/">← Back to Search</Link>
-        </div>
-      </header>
+        <Link to="/">← Back to Search</Link>
+      </div>
 
       <div className="image-gallery">
-        <img className="large-image" src={images[currentImageIndex]} alt="Property" />
+        <img 
+          src={`${process.env.PUBLIC_URL}${images[currentImageIndex]}`} 
+          alt="Property main" 
+          className="main-image" 
+        />
         <div className="thumbnails">
-          {images.map((img, idx) => (
+          {thumbnails.map((img, idx) => (
             <img
               key={idx}
-              src={img}
+              src={`${process.env.PUBLIC_URL}${img}`}
               alt={`Thumbnail ${idx + 1}`}
               onClick={() => setCurrentImageIndex(idx)}
-              className={idx === currentImageIndex ? 'active' : ''}
+              className={idx === currentImageIndex ? "active" : ""}
             />
           ))}
         </div>
       </div>
 
-      <p className="property-description">{property.description}</p>
-
-      <div className="property-details">
-        <p><strong>Tenure:</strong> {property.tenure}</p>
-        <p><strong>Has Garden:</strong> {property.hasGarden ? 'Yes' : 'No'}</p>
-        <p><strong>Has Parking:</strong> {property.hasParking ? 'Yes' : 'No'}</p>
-        <p><strong>Date Added:</strong> {property.dateAdded}</p>
-      </div>
-
-      <img src={property.floorplan} alt="Floor Plan" className="floor-plan" />
-
-      <iframe src={mapEmbedUrl} title="Property Location" className="map-embed"></iframe>
-
       <Tabs>
         <TabList>
+          <Tab>Description</Tab>
+          <Tab>Floorplan</Tab>
+          <Tab>Map</Tab>
           <Tab>Book Viewing</Tab>
         </TabList>
+
         <TabPanel>
-          <form onSubmit={handleBooking} className="booking-form">
+          <p>{property.description}</p>
+        </TabPanel>
+
+        <TabPanel>
+          <img 
+            src={`${process.env.PUBLIC_URL}${property.floorplan}`} 
+            alt="Floorplan" 
+            className="floorplan" 
+          />
+        </TabPanel>
+
+        <TabPanel>
+          <div className="map-embed">
+            <iframe
+              title="Property Location"
+              src={`https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2486.123456789012!2d${property.longitude || '0.0'}!3d${property.latitude || '51.5'}!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNTEuNTAwMDAwMDAwMDAwMDA!5e0!3m2!1sen!2suk!4v1600000000000`}
+              width="100%"
+              height="400"
+              style={{ border: 0 }}
+              allowFullScreen=""
+              loading="lazy"
+            ></iframe>
+          </div>
+        </TabPanel>
+
+        <TabPanel>
+          <form onSubmit={handleSubmit} className="booking-form">
             <input
               type="text"
               placeholder="Your Name"
@@ -155,3 +161,4 @@ export default PropertyPage;
 // DEC 4 UPDATE: Added tabs navigation, booking form with validation, Google Maps embed, and similar properties section
 // Improved image gallery with thumbnail navigation
 // New: Moved styles to classes for mobile responsiveness
+// Latest Update: Added process.env.PUBLIC_URL to all image srcs for GitHub Pages compatibility

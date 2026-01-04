@@ -1,4 +1,4 @@
-// Updated PropertyCard.js - Already responsive, but ensure card scales well
+// PropertyCard.js (Already updated, but full code provided for completeness)
 import { Link } from "react-router-dom";
 import { useDrag } from "react-dnd";
 import favouritesUtil from "../utils/favourites";
@@ -19,9 +19,9 @@ function PropertyCard({ property }) {
   return (
     <div ref={drag} className="property-card" style={{ opacity: isDragging ? 0.5 : 1 }}>
       <img 
-      src={`${process.env.PUBLIC_URL}${property.picture}`} 
-      alt={`${property.bedrooms} Bed ${property.type}`} 
-    />
+        src={`${process.env.PUBLIC_URL}${property.picture}`} 
+        alt={`${property.bedrooms} Bed ${property.type}`} 
+      />
       
       <div className="card-content">
         <h3>{displayTitle}</h3>
