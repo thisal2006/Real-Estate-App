@@ -1,7 +1,7 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import PropertyCard from '../PropertyCard';
 import favouritesUtil from '../../utils/favourites';
-import { toBeInTheDocument } from '@testing-library/jest-dom';
+
 
 jest.mock('react-dnd', () => ({
   useDrag: () => [{ isDragging: false }, jest.fn()],

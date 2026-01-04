@@ -1,5 +1,4 @@
 import { useState } from "react";
-import DatePicker from "react-datepicker";
 import Slider from "rc-slider";
 import "react-datepicker/dist/react-datepicker.css";
 import "rc-slider/assets/index.css";

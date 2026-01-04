@@ -2,7 +2,6 @@
 import { Link } from "react-router-dom";
 import { useDrag } from "react-dnd";
 import favouritesUtil from "../utils/favourites";
-import { toast } from "react-toastify";
 
 function PropertyCard({ property }) {
   const [{ isDragging }, drag] = useDrag({
@@ -19,7 +18,10 @@ function PropertyCard({ property }) {
 
   return (
     <div ref={drag} className="property-card" style={{ opacity: isDragging ? 0.5 : 1 }}>
-      <img src={property.picture} alt={displayTitle} />
+      <img 
+      src={`${process.env.PUBLIC_URL}${property.picture}`} 
+      alt={`${property.bedrooms} Bed ${property.type}`} 
+    />
       
       <div className="card-content">
         <h3>{displayTitle}</h3>

@@ -32,4 +32,5 @@ export const subscribe = (listener) => {
   return () => { listeners = listeners.filter(l => l !== listener); };
 };
 
-export default { add, remove, clear, get, subscribe };
+const favouritesUtil = { add, remove, clear, get, subscribe };
+export default favouritesUtil;

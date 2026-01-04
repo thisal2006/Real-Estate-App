@@ -2,6 +2,7 @@
     "name": "estate-agent-app",
     "version": "0.1.0",
     "private": true,
+    "homepage": "https://github.com/thisal2006/Real-Estate-App",
     "dependencies": {
         "@testing-library/jest-dom": "^5.17.0",
         "@testing-library/react": "^13.4.0",
