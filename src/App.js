@@ -8,7 +8,7 @@ import "./App.css";
 function App() {
   return (
     <DndProvider backend={HTML5Backend}>
-      <Router basename="/Real-estate-app">
+      <Router basename="/real-estate-app">
         <Routes>
           <Route path="/" element={<SearchPage />} />
           <Route path="/property/:id" element={<PropertyPage />} />
