@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/Real-Estate-App/static/css/main.5b197e59.css",
-    "main.js": "/Real-Estate-App/static/js/main.f5c45e58.js",
-    "static/js/453.5d9fec5e.chunk.js": "/Real-Estate-App/static/js/453.5d9fec5e.chunk.js",
-    "index.html": "/Real-Estate-App/index.html",
-    "main.5b197e59.css.map": "/Real-Estate-App/static/css/main.5b197e59.css.map",
-    "main.f5c45e58.js.map": "/Real-Estate-App/static/js/main.f5c45e58.js.map",
-    "453.5d9fec5e.chunk.js.map": "/Real-Estate-App/static/js/453.5d9fec5e.chunk.js.map"
+    "main.css": "/thisal2006/Real-Estate-App/static/css/main.bfb8aea7.css",
+    "main.js": "/thisal2006/Real-Estate-App/static/js/main.99d17673.js",
+    "static/js/453.5d9fec5e.chunk.js": "/thisal2006/Real-Estate-App/static/js/453.5d9fec5e.chunk.js",
+    "index.html": "/thisal2006/Real-Estate-App/index.html",
+    "main.bfb8aea7.css.map": "/thisal2006/Real-Estate-App/static/css/main.bfb8aea7.css.map",
+    "main.99d17673.js.map": "/thisal2006/Real-Estate-App/static/js/main.99d17673.js.map",
+    "453.5d9fec5e.chunk.js.map": "/thisal2006/Real-Estate-App/static/js/453.5d9fec5e.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.5b197e59.css",
-    "static/js/main.f5c45e58.js"
+    "static/css/main.bfb8aea7.css",
+    "static/js/main.99d17673.js"
   ]
 }
